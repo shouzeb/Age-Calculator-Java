@@ -1,0 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package calender;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Shouzeb
+ */
+public class Calender {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");    
+LocalDate today = LocalDate.now();
+System.out.println("Enter your date of birth in given format d/M/yyyy i-e 4/8/1998");
+Scanner scan=new Scanner(System.in);
+String date=scan.next();
+LocalDate birthday = LocalDate.parse(date, formatter);
+
+
+Period p = Period.between(birthday, today);
+int year=(p.getYears()+(p.getMonths()/12)+(p.getDays()/365)),days=((year*365)+(p.getMonths()*30)+(p.getDays()));
+int months=((year*12)+(p.getMonths())+(p.getDays()/30));
+
+int weeks=(days/7);
+int hours=(days*24);
+int min=(hours*60),sec=(min*60);
+System.out.println(" Total Years: " + year + "\n"+" Total Months: " + months +"\n Total Weeks: " + weeks +"\n Total Days: " + days +
+        "\n Total Hours: "+hours+"\n Total Minutes: "+min+"\n Total Seconds: "+sec);
+    }
+    
+}
